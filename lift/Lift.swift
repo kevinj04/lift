@@ -20,17 +20,46 @@ class Lift {
                 return
             }
 
-            var jsonError: NSError?
-            var json: [String: AnyObject]! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &jsonError) as [String: AnyObject]
+            var jsonError: NSErrorPointer?
+            var json: [String: AnyObject]! = Lift.dictionaryFromJSONData(data, jsonError: jsonError)
+
 
             if let e = jsonError {
-                block(data: nil, error: e)
+                block(data: nil, error: e.memory!)
                 return
             }
 
             block(data: json, error: error)
 
         }];
+    }
+
+    class func syncSend(request: NSURLRequest, error: NSError) -> [String: AnyObject] {
+
+        var response: NSURLResponse?
+        var error: NSError?
+
+        var data: NSData = NSURLConnection.sendSynchronousRequest(request, returningResponse: &response, error: &error)
+
+        if let e = error {
+            return [:]
+        }
+
+        var jsonError: NSErrorPointer?
+        var responseData: [String: AnyObject] = Lift.dictionaryFromJSONData(data, jsonError: jsonError)
+
+        if let e = jsonError {
+            error = jsonError?.memory
+            return [:]
+        }
+
+        return responseData
+    }
+
+    class func dictionaryFromJSONData(data: NSData, jsonError: NSErrorPointer?) -> [String: AnyObject] {
+
+        var json: [String: AnyObject]! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: jsonError!) as [String: AnyObject]
+        return json;
     }
 
 }

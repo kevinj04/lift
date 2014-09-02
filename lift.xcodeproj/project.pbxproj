@@ -12,6 +12,7 @@
 		0AFD0E7419930A3E007B668A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AFD0E7219930A3E007B668A /* Main.storyboard */; };
 		0AFD0E7619930A3E007B668A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AFD0E7519930A3E007B668A /* Images.xcassets */; };
 		0AFD0E8219930A3E007B668A /* liftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD0E8119930A3E007B668A /* liftTests.swift */; };
+		0AFD0E8C19930BAD007B668A /* Lift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD0E8B19930BAD007B668A /* Lift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		0AFD0E7B19930A3E007B668A /* liftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = liftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AFD0E8019930A3E007B668A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AFD0E8119930A3E007B668A /* liftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = liftTests.swift; sourceTree = "<group>"; };
+		0AFD0E8B19930BAD007B668A /* Lift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lift.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				0AFD0E7219930A3E007B668A /* Main.storyboard */,
 				0AFD0E7519930A3E007B668A /* Images.xcassets */,
 				0AFD0E6C19930A3E007B668A /* Supporting Files */,
+				0AFD0E8B19930BAD007B668A /* Lift.swift */,
 			);
 			path = lift;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AFD0E8C19930BAD007B668A /* Lift.swift in Sources */,
 				0AFD0E7119930A3E007B668A /* ViewController.swift in Sources */,
 				0AFD0E6F19930A3E007B668A /* AppDelegate.swift in Sources */,
 			);
@@ -277,7 +281,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -313,7 +317,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -325,7 +329,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = lift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -336,7 +342,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = lift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

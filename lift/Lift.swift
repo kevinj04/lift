@@ -11,12 +11,17 @@ import Foundation
 
 class Lift {
 
+    struct Settings {
+        static var timeoutInterval: NSTimeInterval = 30
+        static var cachePolicy: NSURLRequestCachePolicy = NSURLRequestCachePolicy.UseProtocolCachePolicy
+    }
+
     class func asyncSend(request: NSURLRequest, block: (data: [String:AnyObject]?, error: NSError) -> Void) {
 
         [NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
 
-            if (error) {
-                block(data: nil, error: error)
+            if let e = error {
+                block(data: nil, error: e)
                 return
             }
 
@@ -39,14 +44,18 @@ class Lift {
         var response: NSURLResponse?
         var error: NSError?
 
-        var data: NSData = NSURLConnection.sendSynchronousRequest(request, returningResponse: &response, error: &error)
+        var data: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse: &response, error: &error)?
 
         if let e = error {
             return [:]
         }
 
         var jsonError: NSErrorPointer?
-        var responseData: [String: AnyObject] = Lift.dictionaryFromJSONData(data, jsonError: jsonError)
+
+        var responseData : [String: AnyObject] = [:]
+        if let d = data {
+            responseData = Lift.dictionaryFromJSONData(d, jsonError: jsonError)
+        }
 
         if let e = jsonError {
             error = jsonError?.memory
@@ -60,6 +69,16 @@ class Lift {
 
         var json: [String: AnyObject]! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: jsonError!) as [String: AnyObject]
         return json;
+    }
+
+    class func request(url: NSURL) {
+
+        var request: NSMutableURLRequest
+
+        request = NSMutableURLRequest(URL: url)
+        request.cachePolicy     = Lift.Settings.cachePolicy
+        request.timeoutInterval = Lift.Settings.timeoutInterval
+
     }
 
 }
